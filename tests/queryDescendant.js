@@ -2,7 +2,7 @@ define([
     "esquery",
     "jstestr/assert",
     "jstestr/test",
-    "./fixtures/conditional",
+    "tests/fixtures/conditional",
 ], function (esquery, assert, test, conditional) {
 
     test.defineSuite("Pseudo matches query", {

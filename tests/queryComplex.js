@@ -3,11 +3,11 @@ define([
     "esquery",
     "jstestr/assert",
     "jstestr/test",
-    "./fixtures/conditional",
-    "./fixtures/forLoop",
-    "./fixtures/simpleFunction",
-    "./fixtures/simpleProgram",
-    "./fixtures/nestedFunctions"
+    "tests/fixtures/conditional",
+    "tests/fixtures/forLoop",
+    "tests/fixtures/simpleFunction",
+    "tests/fixtures/simpleProgram",
+    "tests/fixtures/nestedFunctions"
 ], function (esquery, assert, test, conditional, forLoop, simpleFunction, simpleProgram, nestedFunctions) {
 
     test.defineSuite("Complex selector query", {

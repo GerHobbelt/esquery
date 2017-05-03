@@ -3,7 +3,7 @@ define([
     "esquery",
     "jstestr/assert",
     "jstestr/test",
-    "./fixtures/allClasses"
+    "tests/fixtures/allClasses"
 ], function (esquery, assert, test, ast) {
 
     test.defineSuite("Class query", {

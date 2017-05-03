@@ -3,10 +3,10 @@ define([
     "esquery",
     "jstestr/assert",
     "jstestr/test",
-    "./fixtures/conditional",
-    "./fixtures/forLoop",
-    "./fixtures/simpleFunction",
-    "./fixtures/simpleProgram"
+    "tests/fixtures/conditional",
+    "tests/fixtures/forLoop",
+    "tests/fixtures/simpleFunction",
+    "tests/fixtures/simpleProgram"
 ], function (esquery, assert, test, conditional, forLoop, simpleFunction, simpleProgram) {
 
     test.defineSuite("Pseudo *-child query", {
