@@ -27,7 +27,7 @@
   ],
   "devDependencies": {
     "jstestr": "0.4.2",
-    "pegjs": "0.7.0",
+    "pegjs": "0.10.0",
     "commonjs-everywhere": "0.9.7",
     "esprima": "1.2.5"
   },
