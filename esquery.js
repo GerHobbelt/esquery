@@ -142,14 +142,14 @@
                 case 'sibling':
                     return matches(node, selector.right, ancestry) &&
                         sibling(node, selector.left, ancestry, LEFT_SIDE) ||
-                        selector.left.subject &&
+                        selector.left && selector.left.subject &&
                         matches(node, selector.left, ancestry) &&
                         sibling(node, selector.right, ancestry, RIGHT_SIDE);
 
                 case 'adjacent':
                     return matches(node, selector.right, ancestry) &&
                         adjacent(node, selector.left, ancestry, LEFT_SIDE) ||
-                        selector.right.subject &&
+                        selector.right && selector.right.subject &&
                         matches(node, selector.left, ancestry) &&
                         adjacent(node, selector.right, ancestry, RIGHT_SIDE);
 
@@ -181,7 +181,8 @@
                                 node.type === 'Literal' ||
                                 node.type === 'Identifier';
                         case 'function':
-                            return node.type.slice(0, 8) === 'Function' ||
+                            return node.type === 'FunctionDeclaration' ||
+                                node.type === 'FunctionExpression' ||
                                 node.type === 'ArrowFunctionExpression';
                     }
                     throw new Error('Unknown class name: ' + selector.name);
@@ -196,6 +197,7 @@
         function sibling(node, selector, ancestry, side) {
             var parent = ancestry[0], listProp, startIndex, keys, i, l, k, lowerBound, upperBound;
             if (!parent) { return false; }
+            if (!selector) { return false; }
             keys = estraverse.VisitorKeys[parent.type];
             for (i = 0, l = keys.length; i < l; ++i) {
                 listProp = parent[keys[i]];
@@ -225,6 +227,7 @@
         function adjacent(node, selector, ancestry, side) {
             var parent = ancestry[0], listProp, keys, i, l, idx;
             if (!parent) { return false; }
+            if (!selector) { return false; }
             keys = estraverse.VisitorKeys[parent.type];
             if (!keys) { return false; }
             for (i = 0, l = keys.length; i < l; ++i) {
