@@ -3,7 +3,7 @@ define([
     "esquery",
     "jstestr/assert",
     "jstestr/test",
-    "./fixtures/conditional"
+    "tests/fixtures/conditional"
 ], function (esquery, assert, test, conditional) {
 
     test.defineSuite("Parent selector query", {
