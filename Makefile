@@ -1,6 +1,6 @@
 default: parser
 
-PEGJS = node_modules/.bin/pegjs --cache --export-var 'var result'
+PEGJS = node_modules/.bin/pegjs --format umd --cache --export-var 'result'
 CJSIFY = node_modules/.bin/cjsify
 
 parser: parser.js
