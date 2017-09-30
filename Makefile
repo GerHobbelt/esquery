@@ -1,20 +1,19 @@
-default: parser
+default: parser browser
 
-PEGJS = node_modules/.bin/pegjs --cache --export-var 'var result'
+PEGJS = node_modules/.bin/pegjs --cache
 CJSIFY = node_modules/.bin/cjsify
 
 parser: parser.js
-browser: dist/esquery.min.js
+browser: dist/esquery.js
 
 clean:
-	-rm -f parser.js dist/esquery.min.js
+	-rm -f parser.js dist/*.js dist/*.map
 
 parser.js: grammar.pegjs
-	$(PEGJS) <"$<" >"$@"
-	@echo 'if (typeof define === "function" && define.amd) { define(function(){ return result; }); } else if (typeof module !== "undefined" && module.exports) { module.exports = result; } else { this.esquery = result; }' >> "$@"
+	$(PEGJS) --format commonjs < "$<" > "$@"
 
-dist/esquery.min.js: esquery.js parser.js
+dist/esquery.js: esquery.js parser.js
 	@mkdir -p "$(@D)"
-	$(CJSIFY) esquery.js -mvx esquery --source-map "$@.map" > "$@"
+	$(CJSIFY) esquery.js -vx esquery --source-map "$@.map" > "$@"
 
 .PHONY: default parser browser clean
