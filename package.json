@@ -31,7 +31,7 @@
     "commonjs-everywhere": "0.9.7",
     "esprima": "4.0.0"
   },
-  "license": "BSD",
+  "license": "BSD-3-Clause",
   "engines": {
     "node": ">=0.6"
   },
