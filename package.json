@@ -29,7 +29,7 @@
     "commonjs-everywhere": "0.9.7",
     "esprima": "4.0.0",
     "mocha": "3.5.3",
-    "pegjs": "0.10.0"
+    "pegjs": "0.7.0"
   },
   "license": "BSD-3-Clause",
   "engines": {
