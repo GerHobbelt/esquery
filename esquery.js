@@ -324,7 +324,7 @@
          */
         function subjects(selector, ancestor) {
             var results, p;
-            if (selector == null || typeof selector != 'object') { return []; }
+            if (selector == null || typeof selector !== 'object') { return []; }
             if (ancestor == null) { ancestor = selector; }
             results = selector.subject ? [ancestor] : [];
             for(p in selector) {
@@ -352,12 +352,7 @@
         function match(ast, selector) {
             var ancestry = [], results = [], altSubjects, i, l, k, m;
             if (!selector) { return results; }
-            console.log("match(): selector: ", JSON.stringify({
-                ast,
-                selector
-            }, null, 2));
             altSubjects = subjects(selector);
-            console.log("match(): altSubjects: ", JSON.stringify(altSubjects, null, 2));
             estraverse.traverse(ast, {
                 enter: function (node, parent) {
                     if (parent != null) { ancestry.unshift(parent); }
@@ -365,19 +360,13 @@
                         if (altSubjects.length) {
                             for (i = 0, l = altSubjects.length; i < l; ++i) {
                                 if (matches(node, altSubjects[i], ancestry)) { 
-                                    if (isAlreadyPresent(results, node)) {
-                                        console.log("match: pushing DUPLICATE A!");
-                                    } else {
-                                        console.log("match: pushing A:", i, node);
+                                    if (!isAlreadyPresent(results, node)) {
                                         results.push(node); 
                                     }
                                 }
                                 for (k = 0, m = ancestry.length; k < m; ++k) {
                                     if (matches(ancestry[k], altSubjects[i], ancestry.slice(k + 1))) {
-                                        if (isAlreadyPresent(results, ancestry[k])) {
-                                            console.log("match: pushing DUPLICATE B!");
-                                        } else {
-                                            console.log("match: pushing B:", i, k, ancestry[k]);
+                                        if (!isAlreadyPresent(results, ancestry[k])) {
                                             results.push(ancestry[k]);
                                         }
                                     }
@@ -388,9 +377,10 @@
                         }
                     }
                 },
-                leave: function () { ancestry.shift(); }
+                leave: function () { 
+                    ancestry.shift(); 
+                }
             });
-            console.log("match(): RETURN: ", JSON.stringify(results, null, 2));
             return results;
         }
 
@@ -398,9 +388,7 @@
          * Parse a selector string and return its AST.
          */
         function parse(selector) {
-            // console.log('parse', selector);
             selector = translateInput(selector);
-            // console.log('translated selector for parse', selector);
 
             return parser.parse(selector);
         }
