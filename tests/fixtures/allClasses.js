@@ -1,88 +1,89 @@
 var esprima = require("esprima");
 
 
-// module.exports = esprima.parse("function a(){ [a] = () => 0; `foo`; new.target; }");
-
-module.exports = {
-    "type": "Program",
-    "body": [
-        {
-            "type": "FunctionDeclaration",
-            "id": {
-                "type": "Identifier",
-                "name": "a"
-            },
-            "params": [],
-            "body": {
-                "type": "BlockStatement",
-                "body": [
-                    {
-                        "type": "ExpressionStatement",
-                        "expression": {
-                            "type": "AssignmentExpression",
-                            "operator": "=",
-                            "left": {
-                                "type": "ArrayPattern",
-                                "elements": [
-                                    {
-                                        "type": "Identifier",
-                                        "name": "a"
-                                    }
-                                ]
-                            },
-                            "right": {
-                                "type": "ArrowFunctionExpression",
-                                "id": null,
-                                "params": [],
-                                "body": {
-                                    "type": "Literal",
-                                    "value": 0,
-                                    "raw": "0"
+if (1) {
+    module.exports = esprima.parse("function a(){ [a] = () => 0; `foo`; new.target; }");
+} else {
+    module.exports = {
+        "type": "Program",
+        "body": [
+            {
+                "type": "FunctionDeclaration",
+                "id": {
+                    "type": "Identifier",
+                    "name": "a"
+                },
+                "params": [],
+                "body": {
+                    "type": "BlockStatement",
+                    "body": [
+                        {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                                "type": "AssignmentExpression",
+                                "operator": "=",
+                                "left": {
+                                    "type": "ArrayPattern",
+                                    "elements": [
+                                        {
+                                            "type": "Identifier",
+                                            "name": "a"
+                                        }
+                                    ]
                                 },
-                                "generator": false,
-                                "expression": true,
-                                "async": false
-                            }
-                        }
-                    },
-                    {
-                        "type": "ExpressionStatement",
-                        "expression": {
-                            "type": "TemplateLiteral",
-                            "quasis": [
-                                {
-                                    "type": "TemplateElement",
-                                    "value": {
-                                        "raw": "foo",
-                                        "cooked": "foo"
+                                "right": {
+                                    "type": "ArrowFunctionExpression",
+                                    "id": null,
+                                    "params": [],
+                                    "body": {
+                                        "type": "Literal",
+                                        "value": 0,
+                                        "raw": "0"
                                     },
-                                    "tail": true
+                                    "generator": false,
+                                    "expression": true,
+                                    "async": false
                                 }
-                            ],
-                            "expressions": []
-                        }
-                    },
-                    {
-                        "type": "ExpressionStatement",
-                        "expression": {
-                            "type": "MetaProperty",
-                            "meta": {
-                                "type": "Identifier",
-                                "name": "new"
-                            },
-                            "property": {
-                                "type": "Identifier",
-                                "name": "target"
+                            }
+                        },
+                        {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                                "type": "TemplateLiteral",
+                                "quasis": [
+                                    {
+                                        "type": "TemplateElement",
+                                        "value": {
+                                            "raw": "foo",
+                                            "cooked": "foo"
+                                        },
+                                        "tail": true
+                                    }
+                                ],
+                                "expressions": []
+                            }
+                        },
+                        {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                                "type": "MetaProperty",
+                                "meta": {
+                                    "type": "Identifier",
+                                    "name": "new"
+                                },
+                                "property": {
+                                    "type": "Identifier",
+                                    "name": "target"
+                                }
                             }
                         }
-                    }
-                ]
-            },
-            "generator": false,
-            "expression": false,
-            "async": false
-        }
-    ],
-    "sourceType": "script"
-};
-
+                    ]
+                },
+                "generator": false,
+                "expression": false,
+                "async": false
+            }
+        ],
+        "sourceType": "script"
+    };
+}
