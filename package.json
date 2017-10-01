@@ -26,14 +26,14 @@
     "query"
   ],
   "devDependencies": {
-    "jstestr": "0.4.2",
-    "pegjs": "0.10.0",
     "commonjs-everywhere": "0.9.7",
-    "esprima": "4.0.0"
+    "esprima": "4.0.0",
+    "jstestr": "0.4.2",
+    "pegjs": "0.10.0"
   },
   "license": "BSD-3-Clause",
   "engines": {
-    "node": ">=0.6"
+    "node": ">=4.0"
   },
   "dependencies": {
     "estraverse": "4.2.0"

@@ -14,6 +14,59 @@
     function esqueryModule() {
 
         /**
+         * Convert shorthand notation in the selector.
+         * 
+         * @param  {string} selector 
+         * @return {string} 
+         */
+        function translateInput(selector) {
+            selector = selector.replace(/@If\b/, 'IfStatement');
+            selector = selector.replace(/@Id\b/, 'Identifier');
+            selector = selector.replace(/@Var\b/, 'VariableDeclaration');
+            selector = selector.replace(/@Expr\b/, 'ExpressionStatement');
+            selector = selector.replace(/@Member\b/, 'MemberExpression');
+            selector = selector.replace(/@Return\b/, 'ReturnStatement');
+            selector = selector.replace(/@Block\b/, 'BlockStatement');
+            selector = selector.replace(/@ForIn\b/, 'ForInStatement');
+            selector = selector.replace(/@ForOf\b/, 'ForOfStatement');
+            selector = selector.replace(/@For\b/, 'ForStatement');
+            selector = selector.replace(/@Empty\b/, 'EmptyStatement');
+            selector = selector.replace(/@Labeled\b/, 'LabeledStatement');
+            selector = selector.replace(/@Break\b/, 'BreakStatement');
+            selector = selector.replace(/@Continue\b/, 'ContinueStatement');
+            selector = selector.replace(/@With\b/, 'WithStatement');
+            selector = selector.replace(/@Switch\b/, 'SwitchStatement');
+            selector = selector.replace(/@Throw\b/, 'ThrowStatement');
+            selector = selector.replace(/@Try\b/, 'TryStatement');
+            selector = selector.replace(/@While\b/, 'WhileStatement');
+            selector = selector.replace(/@DoWhile\b/, 'DoWhileStatement');
+            selector = selector.replace(/@Let\b/, 'LetStatement');
+            selector = selector.replace(/@This\b/, 'ThisExpression');
+            selector = selector.replace(/@Array\b/, 'ArrayExpression');
+            selector = selector.replace(/@Object\b/, 'ObjectExpression');
+            selector = selector.replace(/@FunDecl\b/, 'FunctionDeclaration');
+            selector = selector.replace(/@Fun\b/, 'FunctionExpression');
+            selector = selector.replace(/@Arrow\b/, 'ArrowExpression');
+            selector = selector.replace(/@Seq\b/, 'SequenceExpression');
+            selector = selector.replace(/@Cond\b/, 'ConditionalExpression');
+            selector = selector.replace(/@New\b/, 'NewExpression');
+            selector = selector.replace(/@Call\b/, 'CallExpression');
+            selector = selector.replace(/@Member\b/, 'MemberExpression');
+            selector = selector.replace(/@Yield\b/, 'YieldExpression');
+            selector = selector.replace(/@Gen\b/, 'GeneratorExpression');
+            selector = selector.replace(/@UnaryOp\b/, 'UnaryOperator');
+            selector = selector.replace(/@Unary\b/, 'UnaryExpression');
+            selector = selector.replace(/@BinaryOp\b/, 'BinaryOperator');
+            selector = selector.replace(/@Binary\b/, 'BinaryExpression');
+            selector = selector.replace(/@LogicalOp\b/, 'LogicalOperator');
+            selector = selector.replace(/@Logical\b/, 'LogicalExpression');
+            selector = selector.replace(/@AssignOp\b/, 'AssignmentOperator');
+            selector = selector.replace(/@Assign\b/, 'AssignmentExpression');
+
+            return selector;
+        }
+
+        /**
          * Get the value of a property which may be multiple levels down in the object.
          */
         function getPath(obj, key) {
@@ -313,6 +366,10 @@
          * Parse a selector string and return its AST.
          */
         function parse(selector) {
+            // console.log('parse', selector);
+            selector = translateInput(selector);
+            // console.log('translated selector for parse', selector);
+
             return parser.parse(selector);
         }
 
