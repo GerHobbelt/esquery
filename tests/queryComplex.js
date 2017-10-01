@@ -44,6 +44,22 @@ describe("Complex selector query", function () {
         ], matches);
     });
 
+    it("three types child (shorthand #2)", function () {
+        var matches = esquery(conditional, "@If > @BinExp > @Id");
+        assert.strictEqual(1, matches.length);
+        assert.deepEqual([
+            conditional.body[0].test.left
+        ], matches);
+    });
+
+    it("three types child (shorthand #3)", function () {
+        var matches = esquery(conditional, "@If > @Bin > @Id");
+        assert.strictEqual(1, matches.length);
+        assert.deepEqual([
+            conditional.body[0].test.left
+        ], matches);
+    });
+
     it("two types descendant", function () {
         var matches = esquery(conditional, "IfStatement BinaryExpression");
         assert.strictEqual(2, matches.length);
@@ -88,6 +104,14 @@ describe("Complex selector query", function () {
 
     it("two types adjacent (shorthand)", function () {
         var matches = esquery(simpleProgram, "@Var + @Expr");
+        assert.strictEqual(1, matches.length);
+        assert.deepEqual([
+            simpleProgram.body[2]
+        ], matches);
+    });
+
+    it("two types adjacent (shorthand #2)", function () {
+        var matches = esquery(simpleProgram, "@Variable + @Expr");
         assert.strictEqual(1, matches.length);
         assert.deepEqual([
             simpleProgram.body[2]
