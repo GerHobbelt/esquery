@@ -390,9 +390,7 @@
         function parse(selector) {
             selector = translateInput(selector);
 
-            var rv = parser.parse(selector);
-            console.log("query PEG parse:", JSON.stringify(rv, null, 2));
-            return rv;
+            return parser.parse(selector);
         }
 
         /**

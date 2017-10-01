@@ -3,7 +3,7 @@ var esquery = require('../esquery');
 var assert = require('assert');
 
 var conditional = require("./fixtures/conditional");
-console.log("conditional:", JSON.stringify(conditional, null, 2));
+
 
 
 describe("Pseudo matches query", function () {
