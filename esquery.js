@@ -178,20 +178,20 @@
                             return p != null;
                         case '=':
                             switch (selector.value.type) {
-                                case 'regexp': return selector.value.value.test(p);
-                                case 'literal': return '' + selector.value.value === '' + p;
-                                case 'type': return selector.value.value === typeof p;
+                                case 'regexp': return p != null && selector.value.value.test(p);
+                                case 'literal': return p != null && '' + selector.value.value === '' + p;
+                                case 'type': return p != null && selector.value.value === typeof p;
                             }
                         case '!=':
                             switch (selector.value.type) {
-                                case 'regexp': return !selector.value.value.test(p);
-                                case 'literal': return '' + selector.value.value !== '' + p;
-                                case 'type': return selector.value.value !== typeof p;
+                                case 'regexp': return p != null && !selector.value.value.test(p);
+                                case 'literal': return p != null && '' + selector.value.value !== '' + p;
+                                case 'type': return p != null && selector.value.value !== typeof p;
                             }
-                        case '<=': return p <= selector.value.value;
-                        case '<': return p < selector.value.value;
-                        case '>': return p > selector.value.value;
-                        case '>=': return p >= selector.value.value;
+                        case '<=': return p != null && p <= selector.value.value;
+                        case '<': return p != null && p < selector.value.value;
+                        case '>': return p != null && p > selector.value.value;
+                        case '>=': return p != null && p >= selector.value.value;
                     }
 
                 case 'sibling':
