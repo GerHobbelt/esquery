@@ -1,57 +1,56 @@
 
-define([
-    "esquery",
-    "jstestr/assert",
-    "jstestr/test",
-    "tests/fixtures/conditional",
-    "tests/fixtures/forLoop",
-    "tests/fixtures/simpleFunction",
-    "tests/fixtures/simpleProgram"
-], function (esquery, assert, test, conditional, forLoop, simpleFunction, simpleProgram) {
+var esquery = require('../esquery');
+var assert = require('assert');
 
-    test.defineSuite("Pseudo matches query", {
+var conditional = require("./fixtures/conditional");
+var forLoop = require("./fixtures/forLoop");
+var simpleFunction = require("./fixtures/simpleFunction");
+var simpleProgram = require("./fixtures/simpleProgram");
 
-        "conditional": function () {
-            var matches = esquery(conditional, ":not(Literal)");
-            assert.isEqual(28, matches.length);
-        },
 
-        "for loop": function () {
-            var matches = esquery(forLoop, ':not([name="x"])');
-            assert.isEqual(18, matches.length);
-        },
 
-        "simple function": function () {
-            var matches = esquery(simpleFunction, ":not(*)");
-            assert.isEqual(0, matches.length);
-        },
+describe("Pseudo matches query", function () {
 
-        "simple program": function () {
-            var matches = esquery(simpleProgram, ":not(Identifier, IfStatement)");
-            assert.isEqual(15, matches.length);
-        },
+    it("conditional", function () {
+        var matches = esquery(conditional, ":not(Literal)");
+        assert.equal(28, matches.length);
+    });
 
-        "small program": function () {
-            var program = {
-                type: "Program",
-                body: [{
-                    type: "VariableDeclaration",
-                    declarations: [{
-                        type: "VariableDeclarator",
-                        id: {type: "Identifier", name: "x"},
-                        init: {type: "Literal", value: 1, raw: "1"}
-                    }],
-                    kind: "var"
-                }]
-            };
-            matches = esquery(program, ":not([value=1])");
+    it("for loop", function () {
+        var matches = esquery(forLoop, ':not([name="x"])');
+        assert.equal(18, matches.length);
+    });
 
-            assert.contains([
-                program,
-                program.body[0],
-                program.body[0].declarations[0],
-                program.body[0].declarations[0].id
-            ], matches);
-        }
+    it("simple function", function () {
+        var matches = esquery(simpleFunction, ":not(*)");
+        assert.equal(0, matches.length);
+    });
+
+    it("simple program", function () {
+        var matches = esquery(simpleProgram, ":not(Identifier, IfStatement)");
+        assert.equal(15, matches.length);
+    });
+
+    it("small program", function () {
+        var program = {
+            type: "Program",
+            body: [{
+                type: "VariableDeclaration",
+                declarations: [{
+                    type: "VariableDeclarator",
+                    id: {type: "Identifier", name: "x"},
+                    init: {type: "Literal", value: 1, raw: "1"}
+                }],
+                kind: "var"
+            }]
+        };
+        matches = esquery(program, ":not([value=1])");
+
+        assert.deepEqual([
+            program,
+            program.body[0],
+            program.body[0].declarations[0],
+            program.body[0].declarations[0].id
+        ], matches);
     });
 });

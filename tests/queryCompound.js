@@ -1,28 +1,24 @@
 
-define([
-    "esquery",
-    "jstestr/assert",
-    "jstestr/test",
-    "tests/fixtures/conditional",
-    "tests/fixtures/forLoop",
-    "tests/fixtures/simpleFunction",
-    "tests/fixtures/simpleProgram"
-], function (esquery, assert, test, conditional, forLoop, simpleFunction, simpleProgram) {
+var esquery = require('../esquery');
+var assert = require('assert');
 
-    test.defineSuite("Compound query", {
+var conditional = require("./fixtures/conditional");
 
-        "two attributes": function () {
-            var matches = esquery(conditional, '[left.name="x"][right.value=1]');
-            assert.contains([
-                conditional.body[0].test
-            ], matches);
-        },
 
-        "type and pseudo": function () {
-            var matches = esquery(conditional, '[left.name="x"]:matches(*)');
-            assert.contains([
-                conditional.body[0].test
-            ], matches);
-        }
+
+describe("Compound query", function () {
+
+    it("two attributes", function () {
+        var matches = esquery(conditional, '[left.name="x"][right.value=1]');
+        assert.deepEqual([
+            conditional.body[0].test
+        ], matches);
+    });
+
+    it("type and pseudo", function () {
+        var matches = esquery(conditional, '[left.name="x"]:matches(*)');
+        assert.deepEqual([
+            conditional.body[0].test
+        ], matches);
     });
 });

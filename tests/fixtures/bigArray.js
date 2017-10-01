@@ -1,7 +1,6 @@
-define(["esprima"], function (esprima) {
+var esprima = require("esprima");
 
-    return esprima.parse(
-        '[1, 2, 3, foo, bar, 4, 5, baz, qux, 6]'
-    );
 
-});
+module.exports = esprima.parse(
+    '[1, 2, 3, foo, bar, 4, 5, baz, qux, 6]'
+);

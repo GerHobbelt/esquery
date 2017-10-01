@@ -1,24 +1,21 @@
-define([
-    "esquery",
-    "jstestr/assert",
-    "jstestr/test",
-], function (esquery, assert, test) {
 
-    test.defineSuite("basic query parsing", {
+var esquery = require('../esquery');
+var assert = require('assert');
 
-        "empty query": function () {
-            assert.isEqual(void 0, esquery.parse(""));
-            assert.isEqual(void 0, esquery.parse("      "));
-        },
+describe("basic query parsing", function () {
 
-        "leading/trailing whitespace": function () {
-            assert.isNotEqual(void 0, esquery.parse(" A"));
-            assert.isNotEqual(void 0, esquery.parse("     A"));
-            assert.isNotEqual(void 0, esquery.parse("A "));
-            assert.isNotEqual(void 0, esquery.parse("A     "));
-            assert.isNotEqual(void 0, esquery.parse(" A "));
-            assert.isNotEqual(void 0, esquery.parse("     A     "));
-        }
-
+    it("empty query", function () {
+        assert.equal(void 0, esquery.parse(""));
+        assert.equal(void 0, esquery.parse("      "));
     });
+
+    it("leading/trailing whitespace", function () {
+        assert.notEqual(void 0, esquery.parse(" A"));
+        assert.notEqual(void 0, esquery.parse("     A"));
+        assert.notEqual(void 0, esquery.parse("A "));
+        assert.notEqual(void 0, esquery.parse("A     "));
+        assert.notEqual(void 0, esquery.parse(" A "));
+        assert.notEqual(void 0, esquery.parse("     A     "));
+    });
+
 });

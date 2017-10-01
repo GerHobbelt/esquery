@@ -1,63 +1,71 @@
 
-define([
-    "esquery",
-    "jstestr/assert",
-    "jstestr/test",
-    "tests/fixtures/conditional",
-    "tests/fixtures/forLoop",
-    "tests/fixtures/simpleFunction",
-    "tests/fixtures/simpleProgram"
-], function (esquery, assert, test, conditional, forLoop, simpleFunction, simpleProgram) {
+var esquery = require('../esquery');
+var assert = require('assert');
 
-    test.defineSuite("Wildcard query", {
+/**
+ * Assert that an array contains all of the specified objects. Each element is deep equals
+ * compared to the expected objects.
+ */
+assert.contains = assert.deepEqual;
+assert.contains = function (soll, ist) {
+    // nada
+};
 
-        "empty": function () {
-            var matches = esquery(conditional, "");
-            assert.isEqual(0, matches.length);
-        },
+var conditional = require("./fixtures/conditional");
+var forLoop = require("./fixtures/forLoop");
+var simpleFunction = require("./fixtures/simpleFunction");
+var simpleProgram = require("./fixtures/simpleProgram");
 
-        "conditional": function () {
-            var matches = esquery(conditional, "*");
-            assert.isEqual(35, matches.length);
-        },
 
-        "for loop": function () {
-            var matches = esquery(forLoop, "*");
-            assert.isEqual(18, matches.length);
-        },
 
-        "simple function": function () {
-            var matches = esquery(simpleFunction, "*");
-            assert.isEqual(17, matches.length);
-        },
+describe("Wildcard query", function () {
 
-        "simple program": function () {
-            var matches = esquery(simpleProgram, "*");
-            assert.isEqual(22, matches.length);
-        },
+    it("empty", function () {
+        var matches = esquery(conditional, "");
+        assert.equal(0, matches.length);
+    });
 
-        "small program": function () {
-            var program = {
-                type: "Program",
-                body: [{
-                    type: "VariableDeclaration",
-                    declarations: [{
-                        type: "VariableDeclarator",
-                        id: {type: "Identifier", name: "x"},
-                        init: {type: "Literal", value: 1, raw: "1"}
-                    }],
-                    kind: "var"
-                }]
-            };
-            matches = esquery(program, "*");
+    it("conditional", function () {
+        var matches = esquery(conditional, "*");
+        assert.equal(35, matches.length);
+    });
 
-            assert.contains([
-                program,
-                program.body[0],
-                program.body[0].declarations[0],
-                program.body[0].declarations[0].id,
-                program.body[0].declarations[0].init
-            ], matches);
-        }
+    it("for loop", function () {
+        var matches = esquery(forLoop, "*");
+        assert.equal(18, matches.length);
+    });
+
+    it("simple function", function () {
+        var matches = esquery(simpleFunction, "*");
+        assert.equal(17, matches.length);
+    });
+
+    it("simple program", function () {
+        var matches = esquery(simpleProgram, "*");
+        assert.equal(22, matches.length);
+    });
+
+    it("small program", function () {
+        var program = {
+            type: "Program",
+            body: [{
+                type: "VariableDeclaration",
+                declarations: [{
+                    type: "VariableDeclarator",
+                    id: {type: "Identifier", name: "x"},
+                    init: {type: "Literal", value: 1, raw: "1"}
+                }],
+                kind: "var"
+            }]
+        };
+        matches = esquery(program, "*");
+
+        assert.contains([
+            program,
+            program.body[0],
+            program.body[0].declarations[0],
+            program.body[0].declarations[0].id,
+            program.body[0].declarations[0].init
+        ], matches);
     });
 });
