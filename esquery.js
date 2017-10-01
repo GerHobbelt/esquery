@@ -335,22 +335,51 @@
         }
 
         /**
+         * Check if given node already exists in array.
+         */
+        function isAlreadyPresent(array, node) {
+            for (var i = 0, len = array.length; i < len; i++) {
+                if (array[i] === node) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /**
          * From a JS AST and a selector AST, collect all JS AST nodes that match the selector.
          */
         function match(ast, selector) {
             var ancestry = [], results = [], altSubjects, i, l, k, m;
             if (!selector) { return results; }
+            console.log("match(): selector: ", JSON.stringify({
+                ast,
+                selector
+            }, null, 2));
             altSubjects = subjects(selector);
+            console.log("match(): altSubjects: ", JSON.stringify(altSubjects, null, 2));
             estraverse.traverse(ast, {
                 enter: function (node, parent) {
                     if (parent != null) { ancestry.unshift(parent); }
                     if (matches(node, selector, ancestry)) {
                         if (altSubjects.length) {
                             for (i = 0, l = altSubjects.length; i < l; ++i) {
-                                if (matches(node, altSubjects[i], ancestry)) { results.push(node); }
+                                if (matches(node, altSubjects[i], ancestry)) { 
+                                    if (isAlreadyPresent(results, node)) {
+                                        console.log("match: pushing DUPLICATE A!");
+                                    } else {
+                                        console.log("match: pushing A:", i, node);
+                                        results.push(node); 
+                                    }
+                                }
                                 for (k = 0, m = ancestry.length; k < m; ++k) {
                                     if (matches(ancestry[k], altSubjects[i], ancestry.slice(k + 1))) {
-                                        results.push(ancestry[k]);
+                                        if (isAlreadyPresent(results, ancestry[k])) {
+                                            console.log("match: pushing DUPLICATE B!");
+                                        } else {
+                                            console.log("match: pushing B:", i, k, ancestry[k]);
+                                            results.push(ancestry[k]);
+                                        }
                                     }
                                 }
                             }
@@ -361,6 +390,7 @@
                 },
                 leave: function () { ancestry.shift(); }
             });
+            console.log("match(): RETURN: ", JSON.stringify(results, null, 2));
             return results;
         }
 
