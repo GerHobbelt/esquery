@@ -152,46 +152,50 @@ There are also shorthands such as:
 
 See `translateInput` function in `parser.js` for the full list of supported shorthands and translations.
 
-- `@If`: `IfExpression`
-- `@Id`: `Identifier`
-- `@Var`: `VariableDeclaration`
-- `@Expr`
-- `@Member`
-- `@Return`
-- `@Block`
-- `@ForIn`
-- `@ForOf`
-- `@For`
-- `@Empty`
-- `@Labeled`
-- `@Break`
-- `@Continue`
-- `@Switch`
-- `@Throw`
-- `@Try`
-- `@While`
-- `@DoWhile`
-- `@Let`
-- `@This`
-- `@Array`
-- `@Object`
-- `@FunDecl`
-- `@Fun`
-- `@Arrow`
-- `@Seq`
-- `@Cond`
-- `@New`
-- `@Member`
-- `@Yield`
-- `@Gen`
-- `@UnaryOp`
-- `@Unary`
-- `@BinaryOp`
-- `@Binary`
-- `@LogicalOp`
-- `@Logical`
-- `@AssignOp`
-- `@Assign`
+- `@Array` : `ArrayExpression`
+- `@Arrow` : `ArrowExpression`
+- `@AssignOp` : `AssignmentOperator`
+- `@Assign` : `AssignmentExpression`
+- `@BinaryOp` : `BinaryOperator`
+- `@BinExp` : `BinaryExpression`
+- `@BinOp` : `BinaryOperator`
+- `@Bin` : `BinaryExpression`
+- `@Block` : `BlockStatement`
+- `@Break` : `BreakStatement`
+- `@Call` : `CallExpression`
+- `@Cond` : `ConditionalExpression`
+- `@Cont` : `ContinueStatement`
+- `@DoWhile` : `DoWhileStatement`
+- `@Empty` : `EmptyStatement`
+- `@Expr` : `ExpressionStatement`
+- `@ForIn` : `ForInStatement`
+- `@ForOf` : `ForOfStatement`
+- `@For` : `ForStatement`
+- `@FunctionDecl` : `FunctionDeclaration`
+- `@FunDecl` : `FunctionDeclaration`
+- `@Fun` : `FunctionExpression`
+- `@Gen` : `GeneratorExpression`
+- `@Id` : `Identifier`
+- `@If` : `IfStatement`
+- `@Labeled` : `LabeledStatement`
+- `@Let` : `LetStatement`
+- `@LogicalOp` : `LogicalOperator`
+- `@Logical` : `LogicalExpression`
+- `@Member` : `MemberExpression`
+- `@New` : `NewExpression`
+- `@Object` : `ObjectExpression`
+- `@Return` : `ReturnStatement`
+- `@Seq` : `SequenceExpression`
+- `@Switch` : `SwitchStatement`
+- `@This` : `ThisExpression`
+- `@Throw` : `ThrowStatement`
+- `@Try` : `TryStatement`
+- `@UnaryOp` : `UnaryOperator`
+- `@Unary` : `UnaryExpression`
+- `@Var` : `VariableDeclaration`
+- `@While` : `WhileStatement`
+- `@With` : `WithStatement`
+- `@Yield` : `YieldExpression`
 
 ### Compound
 
@@ -282,7 +286,7 @@ Valid: `const foo = 2`
 
 `!IfStatement Identifier` - any not an If statement with an Identifier under, such as `const x = 3` but not `if (x == 2)`
 
-`!* > [name="foo"]` all nodes but those where the immediate child is a node namded `foo` 
+`!* > [name="foo"]` all nodes but those where the immediate child is a node named `foo` 
 
 More examples:
 
