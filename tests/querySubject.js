@@ -25,18 +25,10 @@ describe("Query subject", function () {
 
     it("* subject", function () {
         var matches = esquery(forLoop, '!* > [name="foo"]');
-        assert.strictEqual(10, matches.length);
+        assert.strictEqual(2, matches.length);
         assert.deepEqual([
-            forLoop.body[0].test.right.object,
             forLoop.body[0].test.right,
-            forLoop.body[0].test,
-            forLoop.body[0],
-            forLoop,
-            forLoop.body[0].body.body[0].expression.callee.object,
             forLoop.body[0].body.body[0].expression.callee,
-            forLoop.body[0].body.body[0].expression,
-            forLoop.body[0].body.body[0],
-            forLoop.body[0].body,
         ], matches);
     });
 
@@ -45,8 +37,8 @@ describe("Query subject", function () {
         assert.strictEqual(3, matches.length);
         assert.deepEqual([
             simpleFunction.body[0],
-            simpleFunction.body[0].body.body[0].declarations[0],
             simpleFunction.body[0].body.body[0],
+            simpleFunction.body[0].body.body[0].declarations[0],
         ], matches);
     });
 
@@ -97,28 +89,18 @@ describe("Query subject", function () {
 
     it(":matches subject", function () {
         var matches = esquery(forLoop, '!:matches(*) > [name="foo"]');
-        assert.strictEqual(10, matches.length);
+        assert.strictEqual(2, matches.length);
         assert.deepEqual([
-            forLoop.body[0].test.right.object,
             forLoop.body[0].test.right,
-            forLoop.body[0].test,
-            forLoop.body[0],
-            forLoop,
-            forLoop.body[0].body.body[0].expression.callee.object,
             forLoop.body[0].body.body[0].expression.callee,
-            forLoop.body[0].body.body[0].expression,
-            forLoop.body[0].body.body[0],
-            forLoop.body[0].body,
         ], matches);
     });
 
     it(":not subject", function () {
         var matches = esquery(nestedFunctions, '!:not(BlockStatement) > [name="foo"]');
-        assert.strictEqual(3, matches.length);
+        assert.strictEqual(1, matches.length);
         assert.deepEqual([
-            nestedFunctions.body[0].id,
             nestedFunctions.body[0],
-            nestedFunctions,
         ], matches);
     });
 
