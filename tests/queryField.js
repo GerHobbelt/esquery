@@ -13,6 +13,7 @@ describe("Field query", function () {
 
     it("single field", function () {
         var matches = esquery(conditional, ".test");
+        assert.strictEqual(3, matches.length);
         assert.deepEqual([
             conditional.body[0].test,
             conditional.body[1].test,
@@ -22,6 +23,7 @@ describe("Field query", function () {
 
     it("field sequence", function () {
         var matches = esquery(simpleProgram, ".declarations.init");
+        assert.strictEqual(2, matches.length);
         assert.deepEqual([
             simpleProgram.body[0].declarations[0].init,
             simpleProgram.body[1].declarations[0].init

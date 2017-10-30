@@ -2,15 +2,6 @@
 var esquery = require('../esquery');
 var assert = require('assert');
 
-/**
- * Assert that an array contains all of the specified objects. Each element is deep equals
- * compared to the expected objects.
- */
-assert.contains = assert.deepEqual;
-assert.contains = function (soll, ist) {
-    // nada
-};
-
 var conditional = require("./fixtures/conditional");
 var forLoop = require("./fixtures/forLoop");
 var simpleFunction = require("./fixtures/simpleFunction");
@@ -60,7 +51,8 @@ describe("Wildcard query", function () {
         };
         matches = esquery(program, "*");
 
-        assert.contains([
+        assert.strictEqual(5, matches.length);
+        assert.deepEqual([
             program,
             program.body[0],
             program.body[0].declarations[0],

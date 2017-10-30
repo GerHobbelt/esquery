@@ -10,6 +10,7 @@ describe("Pseudo matches query", function () {
 
     it("conditional matches", function () {
         var matches = esquery(conditional, "Program IfStatement");
+        assert.strictEqual(3, matches.length);
         assert.deepEqual([
             conditional.body[0],
             conditional.body[1],

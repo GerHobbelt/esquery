@@ -46,6 +46,7 @@ describe("Pseudo matches query", function () {
         };
         matches = esquery(program, ":not([value=1])");
 
+        assert.strictEqual(4, matches.length);
         assert.deepEqual([
             program,
             program.body[0],
