@@ -165,6 +165,11 @@ describe("Attribute query", function () {
         ], matches);
     });
 
+    it("nonexistent attribute regexp", function () {
+        var matches = esquery(conditional, '[foobar=/./]');
+        assert.strictEqual(0, matches.length);
+    });
+
     it("not string", function () {
         var matches = esquery(conditional, '[name!="x"]');
         assert.strictEqual(3, matches.length);
