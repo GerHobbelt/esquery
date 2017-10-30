@@ -27,6 +27,7 @@
     "query"
   ],
   "devDependencies": {
+    "@gerhobbelt/ast-types": "0.9.13-7",
     "commonjs-everywhere": "0.9.7",
     "esprima": "4.0.0",
     "mocha": "3.5.3",
