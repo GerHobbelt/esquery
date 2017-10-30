@@ -265,6 +265,7 @@
             if (!parent) { return false; }
             if (!selector) { return false; }
             keys = estraverse.VisitorKeys[parent.type];
+            if (!keys) { return false; }
             for (i = 0, l = keys.length; i < l; ++i) {
                 listProp = parent[keys[i]];
                 if (isArray(listProp)) {
@@ -319,6 +320,7 @@
             var parent = ancestry[0], listProp, keys, i, l, idx;
             if (!parent) { return false; }
             keys = estraverse.VisitorKeys[parent.type];
+            if (!keys) { return false; }
             for (i = 0, l = keys.length; i < l; ++i) {
                 listProp = parent[keys[i]];
                 if (isArray(listProp)) {
