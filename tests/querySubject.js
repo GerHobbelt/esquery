@@ -192,4 +192,12 @@ describe("Query subject", function () {
             bigArray.body[0].expression.elements[8]
         ], matches);
     });
+
+    it("nested descendant subject", function () {
+        var matches = esquery(nestedFunctions, "!:function :function AssignmentExpression");
+        assert.strictEqual(1, matches.length);
+        assert.deepEqual([ 
+            nestedFunctions.body[0] 
+        ], matches);
+    });
 });
