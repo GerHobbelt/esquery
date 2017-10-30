@@ -108,7 +108,7 @@
             if (!node) { return false; }
             if (!ancestry) { ancestry = []; }
 
-            switch(selector.type) {
+            switch (selector.type) {
                 case 'wildcard':
                     return true;
 
@@ -221,15 +221,15 @@
                         });
 
                 case 'class':
-                    if(!node.type) return false;
-                    switch(selector.name.toLowerCase()){
+                    if (!node.type) return false;
+                    switch (selector.name.toLowerCase()) {
                         case 'statement':
-                            if(node.type.slice(-9) === 'Statement') return true;
+                            if (node.type.slice(-9) === 'Statement') return true;
                             // fallthrough: interface Declaration <: Statement { }
                         case 'declaration':
                             return node.type.slice(-11) === 'Declaration';
                         case 'pattern':
-                            if(node.type.slice(-7) === 'Pattern') return true;
+                            if (node.type.slice(-7) === 'Pattern') return true;
                             // fallthrough: interface Expression <: Node, Pattern { }
                         case 'expression':
                             return node.type.slice(-10) === 'Expression' ||
@@ -328,7 +328,7 @@
             if (ancestor == null) { ancestor = selector; }
             results = selector.subject ? [ancestor] : [];
             for(p in selector) {
-                if(!{}.hasOwnProperty.call(selector, p)) { continue; }
+                if (!{}.hasOwnProperty.call(selector, p)) { continue; }
                 [].push.apply(results, subjects(selector[p], p === 'left' ? selector[p] : ancestor));
             }
             return results;
