@@ -15,9 +15,10 @@ describe("Class query", function () {
           ast.body[0].body,
           ast.body[0].body.body[0],
           ast.body[0].body.body[1],
-          ast.body[0].body.body[2]
+          ast.body[0].body.body[2],
+          ast.body[0].body.body[3]
         ], matches);
-        assert.strictEqual(5, matches.length);
+        assert.strictEqual(6, matches.length);
     });
 
     it(":expression", function () {
@@ -30,8 +31,8 @@ describe("Class query", function () {
           ast.body[0].body.body[0].expression.right.body,
           ast.body[0].body.body[1].expression,
           ast.body[0].body.body[2].expression,
-          ast.body[0].body.body[2].expression.meta,
-          ast.body[0].body.body[2].expression.property
+          ast.body[0].body.body[3].expression,
+          ast.body[0].body.body[3].expression.expressions[0]
         ], matches);
         assert.strictEqual(9, matches.length);
     });
@@ -64,8 +65,8 @@ describe("Class query", function () {
           ast.body[0].body.body[0].expression.right.body,
           ast.body[0].body.body[1].expression,
           ast.body[0].body.body[2].expression,
-          ast.body[0].body.body[2].expression.meta,
-          ast.body[0].body.body[2].expression.property
+          ast.body[0].body.body[3].expression,
+          ast.body[0].body.body[3].expression.expressions[0]
         ], matches);
         assert.strictEqual(10, matches.length);
     });
