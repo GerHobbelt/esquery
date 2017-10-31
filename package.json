@@ -14,11 +14,12 @@
   "scripts": {
     "build": "make clean && make",
     "test": "make test",
-    "pub": "npm publish --access public"
+    "pub": "npm publish --access public",
+    "changelog": "changelog -m -a all"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jrfeenst/esquery.git"
+    "url": "https://github.com/GerHobbelt/esquery.git"
   },
   "keywords": [
     "ast",
@@ -28,6 +29,7 @@
   ],
   "devDependencies": {
     "@gerhobbelt/ast-types": "0.9.14-9",
+    "@gerhobbelt/changelog": "1.4.1-9",
     "commonjs-everywhere": "0.9.7",
     "esprima": "4.0.0",
     "mocha": "4.0.1",
