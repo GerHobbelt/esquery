@@ -141,16 +141,19 @@
                 case 'has':
                     var a, collector = [], parent = ancestry[0];
                     for (i = 0, l = selector.selectors.length; i < l; ++i) {
-                      a = ancestry.slice(parent ? 1 : 0);
-                      estraverse.traverse(parent || node, {
-                          enter: function (child, parent) {
-                              if (parent == null) { return; }
-                              a.unshift(parent);
-                              if (matches(child, selector.selectors[i], a, node)) {
-                                collector.push(child);
-                              }
-                          },
-                          leave: function () { a.shift(); }
+                        a = ancestry.slice(parent ? 1 : 0);
+                        estraverse.traverse(parent || node, {
+                            enter: function (child, parent) {
+                                if (parent == null) { return; }
+                                a.unshift(parent);
+                                if (matches(child, selector.selectors[i], a, node)) {
+                                    collector.push(child);
+                                }
+                            },
+                            
+                            leave: function () { 
+                                a.shift(); 
+                            }
                       });
                     }
                     return collector.length !== 0;

@@ -1,7 +1,7 @@
 {
   "name": "@gerhobbelt/esquery",
   "preferGlobal": false,
-  "version": "1.0.1-7",
+  "version": "1.0.1-8",
   "author": "Joel Feenstra <jrfeenst+esquery@gmail.com>",
   "description": "A query library for ECMAScript AST using a CSS selector like query language.",
   "main": "esquery.js",
@@ -28,7 +28,7 @@
     "query"
   ],
   "devDependencies": {
-    "@gerhobbelt/ast-types": "0.9.14-9",
+    "@gerhobbelt/ast-types": "0.10.1-15",
     "@gerhobbelt/changelog": "1.4.1-9",
     "commonjs-everywhere": "0.9.7",
     "esprima": "4.0.0",
